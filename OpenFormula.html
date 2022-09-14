@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Update formula</title>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/codemirror.css' rel='stylesheet'>
+  <!-- The link above loaded the core css -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/codemirror.js'></script>
+  <!-- The script above loaded the core editor -->
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.16.0/mode/spreadsheet/spreadsheet.min.js'></script>
+
+  <!-- The script above loaded the highlighting for Spreadsheet -->
+
+  <style>
+    .CodeMirror {
+    font-family: Verdana;
+    font-size: 16px;
+    }
+  </style>
+
+
+</head>
+
+<body>
+
+  <p id="code"> </p>
+
+
+  <script>
+    google.script.run.withSuccessHandler(showValue).getFormula(); //.prettify();
+
+    function showValue(data){
+        var myCodeMirror = CodeMirror(document.getElementById("code"), { //body, {
+          mode:  "spreadsheet",
+          value: data
+        });
+
+        myCodeMirror.setSize("90%", "90%"); //, 610);
+
+        var text = myCodeMirror.getValue();
+        //window.alert(text);
+    }
+
+    function passData() {
+      var data = document.getElementById("code").innerText; 
+      //window.alert(data);
+      google.script.run.setFormula(data);
+      google.script.host.close();
+    }
+
+    function beautifyFormula(){
+      var formula = document.getElementById("code").innerText; 
+        //formula = formula.replace(/\s+/g, ""); //substitute all spaces
+      formula = formula.replace(/[;]\s+/gm, ";");
+      formula = formula.replace(/[(]\s+/gm, "(");
+      formula = formula.replace(/[)]\s+/gm, ")");
+      //cell.offset(0, 0).setFormula(prettify(formula));
+     
+      //document.getElementById("code").innerHTML = formula;
+
+      CodeMirror(document.getElementById("code"), { 
+      //mode: "spreadsheet",
+      value: formula
+      });
+    }
+
+  </script>
+
+
+
+</body>
+
+
+<footer>
+
+  <br>
+
+  <input type="button" value="Close" onclick="google.script.host.close()" />
+  <input type="button" value="BeautifyFormula" onclick="beautifyFormula()" />
+  <input type="button" value="SetFormula" onclick="passData()" />
+  <br>
+
+
+</footer>
+
+</html>
