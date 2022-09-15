@@ -16,24 +16,41 @@
 ██████╔╝███████╗██║  ██║╚██████╔╝   ██║   ██║     ██║███████╗██║  ██║
 ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝
 
+
 */
 function onInstall(e) {
-  onOpen(e);
+  onOpen();
 }
 
 
-function onOpen(e) {
+function onOpen() {
   //showSidebar();
-
-  DocumentApp.getUi().createAddonMenu()
+/*
+  SpreadsheetApp.getUi().createAddonMenu()
+    .addItem('Formula Updater', 'OpenFormula')
+    .addToUi();
+*/
+  var ui = SpreadsheetApp.getUi();
+  var menu = ui.createAddonMenu();
+  menu
     .addItem('Formula Updater', 'OpenFormula')
     .addToUi();
 
 }
 
+/*
+function onOpen(e) {  
+  var menu = [    
+    { name: "Open Dialog",   functionName: "OpenFormula"      }
+  ];  
+  SpreadsheetApp.getActiveSpreadsheet()
+  .addMenu("Formula Updater", menu);
+}
+*/
+
 function OpenFormula() {
-  var cell = SpreadsheetApp.getCurrentCell();
-  var formula = cell.getFormula();
+  //var cell = SpreadsheetApp.getCurrentCell();
+  //var formula = cell.getFormula();
   var ui = SpreadsheetApp.getUi();
 
   var template = HtmlService.createTemplateFromFile('OpenFormula');
