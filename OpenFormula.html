@@ -16,6 +16,7 @@
     .CodeMirror {
     font-family: Verdana;
     font-size: 16px;
+    background-color: #e3e7e8;
     }
   </style>
 
@@ -55,12 +56,8 @@
       formula = formula.replace(/[;]\s+/gm, ";");
       formula = formula.replace(/[(]\s+/gm, "(");
       formula = formula.replace(/[)]\s+/gm, ")");
-      //cell.offset(0, 0).setFormula(prettify(formula));
-     
-      //document.getElementById("code").innerHTML = formula;
 
       CodeMirror(document.getElementById("code"), { 
-      //mode: "spreadsheet",
       value: formula
       });
     }

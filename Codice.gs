@@ -17,19 +17,18 @@
 ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝
 
 
+
 */
-function onInstall(e) {
+function onInstall() {
   onOpen();
 }
 
-
 function onOpen() {
-  //showSidebar();
-/*
-  SpreadsheetApp.getUi().createAddonMenu()
-    .addItem('Formula Updater', 'OpenFormula')
-    .addToUi();
-*/
+  ShowMyMenu();
+}
+
+function ShowMyMenu() {
+
   var ui = SpreadsheetApp.getUi();
   var menu = ui.createAddonMenu();
   menu
@@ -38,16 +37,11 @@ function onOpen() {
 
 }
 
-/*
-function onOpen(e) {  
-  var menu = [    
-    { name: "Open Dialog",   functionName: "OpenFormula"      }
-  ];  
-  SpreadsheetApp.getActiveSpreadsheet()
-  .addMenu("Formula Updater", menu);
-}
-*/
 
+/**
+ * SHOW DIALOG BOX
+ * 
+ */
 function OpenFormula() {
   //var cell = SpreadsheetApp.getCurrentCell();
   //var formula = cell.getFormula();
@@ -58,18 +52,23 @@ function OpenFormula() {
   // get output html
   var html = template.evaluate()
     .setSandboxMode(HtmlService.SandboxMode.IFRAME)
-    .setWidth(1000)
-    .setHeight(600);
+    .setWidth(1200)
+    .setHeight(1000);
 
   // show modal window
-  ui.showModalDialog(html, 'Update formula');
+  ui.showModalDialog(html, 'Update formula:');
 }
 
+/**
+ * Retrieve Formula from the curent Cell
+ * 
+ */
 function getFormula() {
   var cell = SpreadsheetApp.getCurrentCell();
   var formula = cell.getFormula();
   return formula;
 }
+
 
 function setFormula(formula) {
   var cell = SpreadsheetApp.getCurrentCell();

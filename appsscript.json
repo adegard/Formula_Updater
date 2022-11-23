@@ -8,17 +8,10 @@
     "https://www.googleapis.com/auth/script.container.ui"
   ],
   "runtimeVersion": "V8",
-  "addOns": {
-    "common": {
-      "name": "Solver",
-      "logoUrl": "https://cdn.icon-icons.com/icons2/3403/PNG/512/calculation_icon_215579.png",
-      "layoutProperties": {
-        "primaryColor": "#2772ed"
-      }
-    },
-    "sheets": {      
+    "addOns": {
+    "sheets": {
       "homepageTrigger": {
-      "runFunction": "onOpen"
+        "runFunction": "ShowMyMenu"
       }
     }
   }
