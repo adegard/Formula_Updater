@@ -8,11 +8,17 @@
     "https://www.googleapis.com/auth/script.container.ui"
   ],
   "runtimeVersion": "V8",
-    "addOns": {
-    "sheets": {
+  "addOns": {
+    "common": {
+      "name": "Formula Updater",
+      "logoUrl": "https://cdn.icon-icons.com/icons2/7/PNG/128/mimetypesformulates_mimetypes_365.png",
+      "layoutProperties": {
+        "primaryColor": "#2772ed"
+      },
       "homepageTrigger": {
-        "runFunction": "ShowMyMenu"
+        "runFunction": "onHomePage"
       }
-    }
+    },
+    "sheets": {}
   }
 }
