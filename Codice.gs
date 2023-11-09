@@ -81,7 +81,7 @@ function setFormula(formula) {
  * saveMyFormula
  */
 
-function saveMyFormula(formula) {
+function saveMyFormula(formula, comments) {
 
   var temp = new Date();
   var mydate = Utilities.formatDate(temp, "CET", "yyyy-MM-dd HH-mm"); //"yyyy-MM-dd"); v1.1
@@ -91,8 +91,10 @@ function saveMyFormula(formula) {
   var actualSheetName = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet().getName();
   var NewFileName = mydate + " : " + "formula:" + actualSheetName + "!" + cellNotation + ' - File: ' + filename;
   savemyformula(formula, NewFileName, createOrGetFolder("Backup_formulas", getParentFolder()));
-  //setting formula
+  //setting formula & note
+  var currentnote = cell.offset(0, 0).getNote();
   cell.offset(0, 0).setFormula(formula);
+  cell.offset(0, 0).setNote("--> " + actualSheetName + "!" + cellNotation +" "+"Updated at "+mydate+". " + "      "+comments+ "    --------------------------  "+currentnote);
 
 }
 

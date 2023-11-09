@@ -27,6 +27,10 @@
 
   <p id="code"> </p>
 
+</br></br>
+<label for="comments">Comment:</label>
+<textarea id="comments" name="comments" rows="4" cols="150"></textarea>
+</br></br>
 
   <script>
     google.script.run.withSuccessHandler(showValue).getFormula(); //.prettify();
@@ -54,7 +58,8 @@
   //save formula in file
     function passDataSave() {
       var data = document.getElementById("code").innerText;
-      google.script.run.saveMyFormula(data);
+      var comments = document.getElementById("comments").value;
+      google.script.run.saveMyFormula(data, comments);
       window.alert("saved!");
       //google.script.host.close();
     }
@@ -135,20 +140,27 @@
   <br>
 
 
-  <input type="button" value="BeautifyFormula" onclick="beautifyFormula()" />
-  <input type="button" value="MinifyFormula" onclick="minifyformula()" />
-  <input type="button" value="SetFormula (without saving)" onclick="passData()" />  
+
   </br></br>
   <p>Use this to save a backup and set the modified formula:</p>
-  <input type="button" value="SaveFormula" onclick="passDataSave()" />  
+  <input type="button" value="SaveFormula" onclick="passDataSave()" />
   </br></br>
   <p>Close this window (save before):</p>
   <input type="button" value="Close" onclick="google.script.host.close()" />
   <br>
- </br></br>
-  <small>NB: empty line break cannot be empty. So, place a space character</small>
-
-
+  </br></br>
+  <small>
+    NB: empty line break cannot be empty. So, place a space character.
+    Use ONLY ENGLISH FORMULAS!!
+  </small>
+  </br></br>
+  </br></br>
+  </br></br>
+  <p>-----------------------------------------------------------</p>
+  <p>Experimental (not use):</p>
+  <input type="button" value="BeautifyFormula" onclick="beautifyFormula()" />
+  <input type="button" value="MinifyFormula" onclick="minifyformula()" />
+  <input type="button" value="SetFormula (without saving)" onclick="passData()" />
 </footer>
 
 </html>
