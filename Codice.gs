@@ -75,6 +75,28 @@ function setFormula(formula) {
   cell.offset(0, 0).setFormula(formula);
 }
 
+
+
+/**
+ * saveMyFormula
+ */
+
+function saveMyFormula(formula) {
+
+  var temp = new Date();
+  var mydate = Utilities.formatDate(temp, "CET", "yyyy-MM-dd HH-mm"); //"yyyy-MM-dd"); v1.1
+  var cell = SpreadsheetApp.getCurrentCell();
+  var cellNotation = cell.getA1Notation();
+  var filename = SpreadsheetApp.getActive().getName();
+  var actualSheetName = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet().getName();
+  var NewFileName = mydate + " : " + "formula:" + actualSheetName + "!" + cellNotation + ' - File: ' + filename;
+  savemyformula(formula, NewFileName, createOrGetFolder("Backup_formulas", getParentFolder()));
+  //setting formula
+  cell.offset(0, 0).setFormula(formula);
+
+}
+
+
 function beautify() {
   var cell = SpreadsheetApp.getCurrentCell();
   var formula = cell.getFormula();
@@ -85,17 +107,20 @@ function beautify() {
   formula = formula.replace(/[(]\s+/gm, "(");
   formula = formula.replace(/[)]\s+/gm, ")");
   //cell.offset(0, 0).setFormula(prettify(formula));
-  return beautify; //prettify(formula);
+  return prettify(formula);
 }
 
 function minify(formula) {
   var cell = SpreadsheetApp.getCurrentCell();
   var formula = cell.getFormula();
-  // formula = formula.replace(/\s+/g, ""); //substitute all spaces
+  formula = formula.replace(/\s+/g, ""); //substitute all spaces
+  /*
+  // 
   formula = formula.replace(/[;]\s+/gm, ";");
   formula = formula.replace(/[(]\s+/gm, "(");
   formula = formula.replace(/[)]\s+/gm, ")");
   formula = formula.replace(/\s+[)]/gm, ")");
+  */
   //cell.offset(0, 0).setFormula(formula);
   return minify;
 }
@@ -130,3 +155,6 @@ function prettify() {
   });
   return pretty;
 }
+
+
+

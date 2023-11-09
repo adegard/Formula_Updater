@@ -14,9 +14,9 @@
 
   <style>
     .CodeMirror {
-    font-family: Verdana;
-    font-size: 16px;
-    background-color: #e3e7e8;
+      font-family: Verdana;
+      font-size: 16px;
+      background-color: #e3e7e8;
     }
   </style>
 
@@ -44,23 +44,84 @@
     }
 
     function passData() {
-      var data = document.getElementById("code").innerText; 
+      var data = document.getElementById("code").innerText;
+      //data = data.substring(1, myvariable.length -1) 
       //window.alert(data);
       google.script.run.setFormula(data);
       google.script.host.close();
     }
 
+  //save formula in file
+    function passDataSave() {
+      var data = document.getElementById("code").innerText;
+      google.script.run.saveMyFormula(data);
+      window.alert("saved!");
+      //google.script.host.close();
+    }
+
+
     function beautifyFormula(){
       var formula = document.getElementById("code").innerText; 
         //formula = formula.replace(/\s+/g, ""); //substitute all spaces
+  
+      //formula = formula.replace(/\s+/g, ""); //substitute all spaces
       formula = formula.replace(/[;]\s+/gm, ";");
       formula = formula.replace(/[(]\s+/gm, "(");
       formula = formula.replace(/[)]\s+/gm, ")");
+      //cell.offset(0, 0).setFormula(prettify(formula));
+      //return prettify(formula);
 
-      CodeMirror(document.getElementById("code"), { 
-      value: formula
-      });
+      var pretty = prettify(formula).replace(/\n$/, ""); //prettify and remove last /n
+      console.log('pretty: '+pretty)
+     // pretty = pretty.substring(0, pretty.lastIndexOf("\n");
+
+      document.querySelector('.CodeMirror').CodeMirror.setValue(pretty)
+
+
     }
+    
+
+    function minifyformula(){
+      var formula = document.getElementById("code").innerText; 
+      //formula = formula.replace(/[\s]+[^A-z="✓();,]/g, ""); //substitute all spaces    
+      formula = formula.replace(/[;]\s+/gm, ";"); 
+      formula = formula.replace(/[(]\s+/gm, "("); 
+      formula = formula.replace(/[)]\s+/gm, ")");
+      formula = formula.replace(/\s+[)]/gm, ")");
+      document.querySelector('.CodeMirror').CodeMirror.setValue(formula)
+
+    }
+
+    function prettify(formula) {
+      var pretty = '';
+      var tabNum = 1;
+      var tabOffset = 4;
+      var tabs = [];
+      const regexif = /[\{\(]/;     //    /[\{\(]/   /SE[(]/gm    //https://stackoverflow.com/questions/56762554/what-is-the-regexmatch-equivalent-in-google-apps-script
+
+      formula.split('').forEach(function (c, i) {
+        if (regexif.test(c)) {    //       //    /[\{\(]/
+          tabNum++;
+          tabs[tabNum] = (tabs[tabNum - 1] ? tabs[tabNum - 1] : 0) + tabOffset + 1;
+          //tabOffset = 0;
+          pretty += c + '\n' + ' '.repeat(tabs[tabNum]);
+        } else if (/[\}\)]/.test(c)) {
+          tabNum--;
+          pretty += c + '\n' + ' '.repeat(tabs[tabNum]);
+          //tabOffset = 0;
+        } else if (/[,;]/.test(c)) {
+
+          pretty += c + '\n' + ' '.repeat(tabs[tabNum]);
+          //tabOffset = 0;
+        } else {
+          pretty += c;
+          //tabOffset++;
+        }
+      });
+
+      return pretty; 
+    }
+
 
   </script>
 
@@ -73,10 +134,19 @@
 
   <br>
 
-  <input type="button" value="Close" onclick="google.script.host.close()" />
+
   <input type="button" value="BeautifyFormula" onclick="beautifyFormula()" />
-  <input type="button" value="SetFormula" onclick="passData()" />
+  <input type="button" value="MinifyFormula" onclick="minifyformula()" />
+  <input type="button" value="SetFormula (without saving)" onclick="passData()" />  
+  </br></br>
+  <p>Use this to save a backup and set the modified formula:</p>
+  <input type="button" value="SaveFormula" onclick="passDataSave()" />  
+  </br></br>
+  <p>Close this window (save before):</p>
+  <input type="button" value="Close" onclick="google.script.host.close()" />
   <br>
+ </br></br>
+  <small>NB: empty line break cannot be empty. So, place a space character</small>
 
 
 </footer>
