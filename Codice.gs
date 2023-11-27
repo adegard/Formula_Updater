@@ -90,11 +90,15 @@ function saveMyFormula(formula, comments) {
   var filename = SpreadsheetApp.getActive().getName();
   var actualSheetName = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet().getName();
   var NewFileName = mydate + " : " + "formula:" + actualSheetName + "!" + cellNotation + ' - File: ' + filename;
-  savemyformula(formula, NewFileName, createOrGetFolder("Backup_formulas", getParentFolder()));
+  var relatedSSid =SpreadsheetApp.getActiveSpreadsheet().getId();
+
+  savemyformula(comments, relatedSSid, formula, NewFileName, createOrGetFolder("Backup_formulas", getParentFolder()));
   //setting formula & note
   var currentnote = cell.offset(0, 0).getNote();
   cell.offset(0, 0).setFormula(formula);
-  cell.offset(0, 0).setNote("--> " + actualSheetName + "!" + cellNotation +" "+"Updated at "+mydate+". " + "      "+comments+ "    --------------------------  "+currentnote);
+  var notetoadd = "--> " +"Updated at "+mydate+". " + "      "+comments+ "    --------------------------  "+'\n'+'\n'+ currentnote;
+  cell.offset(0, 0).setNote(notetoadd);
+  // actualSheetName + "!" + cellNotation +" "+
 
 }
 

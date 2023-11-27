@@ -6,7 +6,7 @@
  * 
  */
 
-function savemyformula(text, namefile, folderid){
+function savemyformula(notetoadd, relatedSSid, text, namefile, folderid) {
 
   // This is an apps script code to create a google doc inside the same drive folder and paste a text
   // Get the  folder
@@ -18,16 +18,23 @@ function savemyformula(text, namefile, folderid){
   // Add the document to the folder
   //var asFile = DriveApp.getFileById(documentId); // get new doc as a file
 
- //getting actual body structure
+  //getting actual body structure
   var body = DocumentApp.openById(documentId).getBody();
 
-  // Paste a text
-  body.appendParagraph(text);
+  var urlfile = "https://docs.google.com/document/d/" + relatedSSid + "/edit";
 
+  // Paste a text
+  body.appendParagraph(namefile);
+  body.appendParagraph("*************URL*************");
+  body.appendParagraph(urlfile);
+  body.appendParagraph("*************FORMULA*************");
+  body.appendParagraph(text);
+  body.appendParagraph("************COMMENTS**************");
+  body.appendParagraph(notetoadd);
 }
 
 
-function testingsaving(){
+function testingsaving() {
   savemyformula('This is a sample text that I want to paste in the new document.', 'New Document name');
 }
 
@@ -38,12 +45,12 @@ function testingsaving(){
  * https://stackoverflow.com/questions/42180255/find-the-folder-id-of-the-current-google-apps-spreadsheet
  */
 
-function getParentFolder(){
+function getParentFolder() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var file = DriveApp.getFileById(ss.getId());
   var folders = file.getParents();
-  while (folders.hasNext()){
-    return folders.next().getId() ;
+  while (folders.hasNext()) {
+    return folders.next().getId();
   }
 }
 
@@ -74,10 +81,10 @@ function createOrGetFolder(folderName, parentFolderId) {
     } else {
       throw new Error("Parent Folder with id: " + parentFolderId + " not found");
     }
-    Logger.log("folder: "+folder.getId());
+    Logger.log("folder: " + folder.getId());
     return folder.getId();
   } catch (error) {
     return error;
   }
-  
+
 }
