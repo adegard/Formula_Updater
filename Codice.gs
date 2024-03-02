@@ -161,6 +161,3 @@ function prettify() {
   });
   return pretty;
 }
-
-
-
