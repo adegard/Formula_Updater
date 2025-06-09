@@ -39,4 +39,4 @@ The add-on is built using Google Apps Script and operates directly within Google
 This add-on is open-source and free to use under the MIT License.
 
 ## Additional Resources
-For Notepad++ users interested in updating google sheet formulas: visit the [oogle sheet Formula UDL (User Defined Language) for Notepad++]([https://example.com/gsheet-beautifier](https://github.com/adegard/gsheet_notepad-plus-plus/tree/main)).
+For Notepad++ users interested in updating google sheet formulas: visit the [Google sheet Formula UDL (User Defined Language) for Notepad++]([[https://example.com/gsheet-beautifier](https://github.com/adegard/gsheet_notepad-plus-plus/tree/main)](https://github.com/adegard/gsheet_notepad-plus-plus/tree/main).
