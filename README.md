@@ -3,6 +3,9 @@
 ## Overview
 The **GSHEET Formula Beautifier** is a Google Sheets add-on that enhances the readability of formulas by displaying them in a multi-line format with added comments. This helps users better understand and debug complex formulas.
 
+</br>
+<img src="https://github.com/adegard/Formula_Updater/blob/main/Immagine 2025-06-09 141420.jpg"  align="center">
+
 ## Features
 - **Formula Updater**: Opens a dialog box where users can visualize and modify formulas.
 - **Retrieve Current Formula**: Extracts the formula from the selected cell.
