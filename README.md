@@ -15,20 +15,12 @@ The **GSHEET Formula Updater** is a Google Sheets add-on that enhances the reada
 
 ## Installation & Usage
 1. Install the add-on from the Google Sheets extension marketplace.
-2. Upon installation, the add-on will integrate into the Google Sheets menu.
-3. Navigate to the **Formula Updater** option to view and edit formulas.
-4. Utilize the beautify or minify functions to reformat formulas.
-5. Save your work with comments to track formula history.
+2. Upon installation, the add-on will integrate into the Google Sheets menu.(Extensions > Formula_Updater > Formula Updaetr
+3. Utilize the beautify or minify functions to reformat formulas.
+4. Add the updated formula (or Save version of your work with comments to track formula history => add your Folder id inside ---).
 
 ## Code Architecture
 The add-on is built using Google Apps Script and operates directly within Google Sheets. It uses UI dialogs to enhance user interaction and allows efficient formula modification.
-
-### Core Functions:
-- `getFormula()`: Retrieves the current formula.
-- `setFormula(formula)`: Updates the cell with the formatted formula.
-- `beautify()`: Structures formulas into a multi-line format.
-- `minify()`: Condenses formulas for compact representation.
-- `saveMyFormula(formula, comments)`: Saves formulas along with comments for easy tracking.
 
 ## Benefits
 - Improved formula readability.
