@@ -44,7 +44,6 @@
         myCodeMirror.setSize("100%", "100%"); //, 610);
 
         var text = myCodeMirror.getValue();
-        //window.alert(text);
     }
 
     function passData() {
@@ -61,24 +60,18 @@
       var comments = document.getElementById("comments").value;
       google.script.run.saveMyFormula(data, comments);
       window.alert("saved!");
-      //google.script.host.close();
     }
 
 
     function beautifyFormula(){
       var formula = document.getElementById("code").innerText; 
-        //formula = formula.replace(/\s+/g, ""); //substitute all spaces
-  
-      //formula = formula.replace(/\s+/g, ""); //substitute all spaces
+
       formula = formula.replace(/[;]\s+/gm, ";");
       formula = formula.replace(/[(]\s+/gm, "(");
       formula = formula.replace(/[)]\s+/gm, ")");
-      //cell.offset(0, 0).setFormula(prettify(formula));
-      //return prettify(formula);
 
       var pretty = prettify(formula).replace(/\n$/, ""); //prettify and remove last /n
       console.log('pretty: '+pretty)
-     // pretty = pretty.substring(0, pretty.lastIndexOf("\n");
 
       document.querySelector('.CodeMirror').CodeMirror.setValue(pretty)
 
@@ -88,7 +81,6 @@
 
     function minifyformula(){
       var formula = document.getElementById("code").innerText; 
-      //formula = formula.replace(/[\s]+[^A-z="✓();,]/g, ""); //substitute all spaces    
       formula = formula.replace(/[;]\s+/gm, ";"); 
       formula = formula.replace(/[(]\s+/gm, "("); 
       formula = formula.replace(/[)]\s+/gm, ")");
