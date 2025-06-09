@@ -69,11 +69,11 @@ function createOrGetFolder(folderName, parentFolderId) {
       var video_folder = parentFolder.getFoldersByName(folderName);
       if (video_folder.hasNext()) {
 
-        folder = video_folder.next(); //.getFoldersByName(folderName);
+        folder = video_folder.next(); 
 
       } else {
         folder = parentFolder.createFolder(folderName);
-        //folder = folder.createFolder("01-01");
+
       }
     } else {
       throw new Error("Parent Folder with id: " + parentFolderId + " not found");
