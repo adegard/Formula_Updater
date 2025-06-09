@@ -12,8 +12,8 @@ function savemyformula(notetoadd, relatedSSid, text, namefile, folderid) {
   // Get the  folder
   var folder = DriveApp.getFolderById(folderid);
 
-  //empty document to start with as template
-  var documentId = DriveApp.getFileById("1kZPjBSqsgEOJS87uU87rD1dR1nzjicEYwV5VuWKvmMo").makeCopy(namefile, folder).getId();
+  //empty document to start with as template (PLEASE ADD THE FILE ID of a google Document template here below)
+  var documentId = DriveApp.getFileById("####DOC_TEMPLATE_ID####").makeCopy(namefile, folder).getId();
 
   // Add the document to the folder
   //var asFile = DriveApp.getFileById(documentId); // get new doc as a file
