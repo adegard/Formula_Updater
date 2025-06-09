@@ -43,8 +43,7 @@ function ShowMyMenu() {
  * 
  */
 function OpenFormula() {
-  //var cell = SpreadsheetApp.getCurrentCell();
-  //var formula = cell.getFormula();
+
   var ui = SpreadsheetApp.getUi();
 
   var template = HtmlService.createTemplateFromFile('OpenFormula');
