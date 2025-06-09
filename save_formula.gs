@@ -61,19 +61,16 @@ function getParentFolder() {
  */
 function createOrGetFolder(folderName, parentFolderId) {
   try {
-    //var ssid = SpreadsheetApp.getActiveSpreadsheet().getId();
-    //var folders = DriveApp.getFileById(ssid).getParents();
+
     var parentFolder = DriveApp.getFolderById(parentFolderId),
       folder;
 
     if (parentFolder) {
       var video_folder = parentFolder.getFoldersByName(folderName);
       if (video_folder.hasNext()) {
-        //video_folder = foldersIter.next().getFoldersByName("01-01");
-        //if (video_folder.hasNext()) {
-        //folder = video_folder.next();
+
         folder = video_folder.next(); //.getFoldersByName(folderName);
-        //}
+
       } else {
         folder = parentFolder.createFolder(folderName);
         //folder = folder.createFolder("01-01");
